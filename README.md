@@ -4,7 +4,7 @@ A PyTorch implementation of UNet for binary image segmentation.
 
 ---
 
-## 📝 Overview
+## Overview
 
 This repository contains a UNet model designed for binary segmentation tasks. It processes input images and generates segmented outputs.
 
