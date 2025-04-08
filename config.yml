@@ -1,0 +1,81 @@
+model:
+  # num_classes: 3 # Number of output classes (adjust based on your dataset)
+  input_channels: 3  # RGB images have 3 channels (change if grayscale images)
+  
+  # Convolutional layers configurations
+  conv_layers:
+    - filters: 32
+      kernel_size: 3
+      pool_size: 2  # Pooling size
+    - filters: 64
+      kernel_size: 3
+      pool_size: 2
+    - filters: 128
+      kernel_size: 3
+      pool_size: 2
+
+  # Fully connected layers
+  fc_layers:
+    - units: 512  # Units in the first fully connected layer
+  
+  # Optional: You can also add other parameters such as dropout, batch normalization, etc.
+  dropout: 0.5
+  batch_norm: true
+
+config:
+  # Directories for dataset
+  train_dir: "project/datasets/dataset (2)/train"
+  test_dir: "project/datasets/dataset (2)/test"
+  train_csv: "project/datasets/dataset (2)/Training_set.csv"  # Assuming CSV has 'image' and 'class' columns
+  test_csv: "project/datasets/dataset (2)/Testing_set.csv"
+
+  # Model parameters
+  img_size: 50
+  num_classes: 75
+  input_channels: 3
+
+  # Training parameters
+  batch_size: 32
+  epochs: 1
+  lr: 0.001
+  device: "cuda"
+
+dataloader:
+  module: "data.dataset"
+  function: "get_dataloaders"
+
+dataloader_UNet:
+  module: "data.dataloader_UNet"
+  function: "get_dataloaders"
+
+human-segmentation:
+
+  image_dir: "input/Human-Segmentation-Dataset-master/Training_Images"
+  mask_dir: "input/Human-Segmentation-Dataset-master/Ground_Truth"
+
+UNet:
+  batch_size: 32
+  epochs: 10
+  lr: 0.001
+  device: "cuda"
+# config:
+#   # Directories for dataset
+#   train_dir: "project/datasets/dataset (2)/dataset/train"
+#   test_dir: "project/datasets/dataset (2)/dataset/test"
+#   train_csv: "project/datasets/Training_set.csv"  # Assuming CSV has 'image' and 'class' columns
+#   test_csv: "project/datasets/dataset (2)/dataset/test"
+
+#   # Model parameters
+#   img_size: 50
+#   num_classes: 3
+#   input_channels: 3
+
+#   # Training parameters
+#   batch_size: 32
+#   epochs: 100
+#   lr: 0.001
+#   device: "cpu"
+
+# dataloader:
+#   module: "data.dataloader_3class"
+#   function: "get_dataloaders"
